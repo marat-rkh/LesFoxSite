@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="shortcut icon" href="http://lesfox.neocities.org/images/ico.png"/>
+	<title>LesFox - Главная</title>
+	<style type="text/css">
+  .images-container{
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-size: 0px;
+
+  }
+  .owl-container{
+    width: 10.6%;
+    height: 20.16%;
+    right: 4.8%;
+    top:16.5%;
+  }
+  .fox-container{
+    width: 30%;
+    height: 38.56%;
+    left: 8%;
+    bottom: 18.1%;
+  }
+  .leaf-container{
+  width: 40%;
+  height: 13%;
+  left: 30%;
+  position: fixed;
+  }
+  .cont-container{
+    width: 9.3%;
+    height: 30.16%;
+    top: 41.42%;
+    right: 39.35%;
+  }
+  .light-container{
+    width: 32.2%;
+    height: 47.2%;
+    bottom: 59.32%;
+    right: 16.46%;
+    background: url(/images/light3.png) no-repeat center top;
+    background-size: contain;
+    opacity:0;
+  }
+  .images {
+    width: 100%;
+  }
+  a {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.65rem;
+    line-height: 1.35rem;
+    text-decoration: none;
+    color: grey;
+  }
+  .leaf{
+    display: inline-block;
+    width: 33.33%;
+    height: 100%;
+    padding-top: 1%;
+    background: url(/images/leafmenu12.png) no-repeat center top;
+    background-size: contain;
+  }
+  .leaf-container a{
+        font-size: 1.3rem;
+        color: #D3D3D3;
+  } 
+  .lighting{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 2rem;
+    line-height: 1.35rem;
+    text-decoration: none;
+    color: #A9A9A9;
+  }
+  a:hover {
+    color: white;
+  }
+
+</style>
+</head>
+<body style="margin:0;padding:0;background-image: linear-gradient(rgb(15, 23, 25) 0%, rgb(26, 37, 41) 100%); background-attachment: fixed;">
+<div style="display: block; margin: 0 auto; height: 100vh; width: 160vh; max-height:62.5vw; max-width: 100vw;  position: relative;"><!--Фоновое изображение странно ведёт себя на мобильнике. Может стоит переделать картинкой. UPD. Если делать фон через картинку, нужно править положение листочков. Upd. Или задать изображению абсолютную позицию. (background: url(images/фон.jpg) no-repeat center top fixed; background-size: contain;)-->
+<img style="position: absolute;" class="images" src="images/фон.jpg">
+<div id="img" class="images-container light-container lighting"></div>
+<a class="lighting" id="lighting" style="position: fixed; top:20%; left: 60%; transform: rotate(-15deg);" href="/portfolio.html">Мастерская</a>
+<div class="images-container leaf-container"><!--Пакет для пакетов с пакетами. Надо переделать. Или попробовать менять при анимации фон. Хз что легче пока-->
+<div id="leaf1" class="leaf"><a href="/Main.html">Главная</a></div>
+<div id="leaf2" class="leaf"><a href="/portfolio.html">Мои работы</a></div>
+<div id="leaf3" class="leaf"><a href="/contacts.html">Контакты</a></div>
+</div>
+<!--<div class="images-container leaf-container"><img class="images" src="images/leafmenu12.png"></div>-->
+<div class="images-container fox-container"><a style="position: absolute; font-size: 2rem; top: 10%;" href="/about_me.html">Обо мне</a><img id="fox1" class="images" src="images/1.jpg">
+<img style="display: none;" id="fox2" class="images" src=""></div>
+<div id="owl-container" class="images-container owl-container"><img id="owl1" class="images" src="images/owl1.jpg"><img style="display: none;" id="owl2" class="images" src=""></div>
+<div class="images-container cont-container"><img id="cont1" class="images" src="images/cont1.jpg"><img style="display: none;" id="cont2" class="images" src=""><a href="/contacts.html">Есть контакт!</a></div>
+  </div>
+  	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  	 <!--Смирись, ты хуже адоба.-->
+  	 <script type="text/javascript">
+  	 //Запускать анимации нужно после прогрузки всех изображений, учавствующих в этой анимации. А ты этого не сделал. Или можно динамически создавать скрытые изображения в контейнерах, после чего запускать анимацию путём смены видимости оных. Но ты ведь не хочешь возиться с листочками снова...
+      $(function(){
+        var owls =["images/owl1.jpg", "images/owl2.jpg", "images/owl3.jpg", "images/owl4.jpg", "images/owl5.jpg", "images/owl6.jpg", "images/owl7.jpg", "images/owl8.jpg", "images/owl9.jpg"];//Массив изображений совы
+        var foxs =["images/1.jpg", "images/2.jpg","images/3.jpg","images/4.jpg","images/5.jpg","images/6.jpg","images/72.jpg","images/82.jpg",];//массив изображений лисицы
+        var conts =["images/cont1.jpg", "images/cont2.jpg", "images/cont3.jpg", "images/cont4.jpg", "images/cont5.jpg", "images/cont6.jpg", "images/cont7.jpg",];//Массив изображений ящика
+        var leafs =["url(/images/leafmenu12.png)", "url(/images/leafmenu22.png)", "url(/images/leafmenu32.png)", "url(/images/leafmenu42.png)", "url(/images/leafmenu52.png)", "url(/images/leafmenu6.png)", "url(/images/leafmenu7.png)", "url(/images/leafmenu8.png)"];//Листочки 
+        var leafsimg = ["images/leafmenu12.png", "images/leafmenu22.png", "images/leafmenu32.png", "images/leafmenu42.png", "images/leafmenu52.png", "images/leafmenu6.png", "images/leafmenu7.png", "images/leafmenu8.png"];
+        var leaf3j = 1;//счётчики
+        var leaf2j = 1;
+        var leaf1j = 1;
+        var foxj =1;//Счётчик для лисицы
+        var owlj=1;//Счётчик для совы
+        var contj=1;
+        var owlcont= owls.length;//Количество изображений совы
+        var foxcont = foxs.length;//Количество изображений лисицы
+        var contcont = conts.length;//Количество изображений лисицы
+        var foxcontsign =1;//знак изменения анимаций
+        var contcontsign =1;
+        var leafloads = false;
+        function LightOpacity(){ //Свечение мастерской. Костыльный вариант, требуется переделка. Полная. 
+          setInterval(function(){
+                  if(($('#img').is(":hover"))||($('#lighting').is(":hover"))){
+                     $('#img').animate({opacity:0.9},400);
+                     $('#img').animate({opacity:0.3},400);
+                  } else{
+                     clearInterval(this);
+                     $('#img').stop(true);
+                    }
+          }, 800);
+        }
+        function OwlHover(){//Анимация совы. Какая-то фигня с ней. Скорость не постоянная.
+          if($('#owl-container').is(":hover")){//Если курсор на контейнере совы
+            $('#owl2').attr('src', owls[owlj]);//меняем изображение на изображение из массива
+            owlj++;//увеличиваем счётчик массива
+            if(owlj<owlcont){//если число меньше количества элементов массива
+              setTimeout(OwlHover,110);//То запускаем функцию заново.
+            }
+          }else{//Если курсор за пределами контейнера
+            owlj--;//уменьшаем счётчик массива
+             $('#owl2').attr('src', owls[owlj]);//меняем изображение
+             if(owlj>0){//если счётчик больше 0
+               setTimeout(OwlHover,110);//запускаем функцию заново
+             }
+            
+          }
+        }
+        //Оторви себе руки за такие функции.
+        function Leaf3Hover(){
+          if($('#leaf3').is(":hover")){
+            $('#leaf3').css('background-image', leafs[leaf3j]);
+            leaf3j++;
+            if(leaf3j<leafs.length){
+              setTimeout(Leaf3Hover,110);
+            }
+            }else{
+              leaf3j--;
+              $('#leaf3').css('background-image', leafs[leaf3j]);
+              if(leaf3j>0){
+                setTimeout(Leaf3Hover,110);
+            }
+          }
+        }
+        function Leaf2Hover(){
+          if($('#leaf2').is(":hover")){
+            $('#leaf2').css('background-image', leafs[leaf2j]);
+            leaf2j++;
+            if(leaf2j<leafs.length){
+              setTimeout(Leaf2Hover,110);
+            }
+            }else{
+              leaf2j--;
+              $('#leaf2').css('background-image', leafs[leaf2j]);
+              if(leaf2j>0){
+                setTimeout(Leaf2Hover,110);
+            }
+          }
+        }
+        function Leaf1Hover(){
+          if($('#leaf1').is(":hover")){
+            $('#leaf1').css('background-image', leafs[leaf1j]);
+            leaf1j++;
+            if(leaf1j<leafs.length){
+              setTimeout(Leaf1Hover,110);
+            }
+            }else{
+              leaf1j--;
+              $('#leaf1').css('background-image', leafs[leaf1j]);
+              if(leaf1j>0){
+                setTimeout(Leaf1Hover,110);
+            }
+          }
+        }
+        //Функции для ящика и лисицы(удивительно) одинаковые. Нужно будет оптимизировать, чтобы не повторялся код. Upd. Надо поискать способ остановки всех однотипных функций. Странно себя ведут при наведении на ссылки.
+        function FoxHover(){
+          if($('.fox-container').is(":hover")){//Если курсор на контейнере лисы
+            foxj+=foxcontsign;//изменяем счётчик массива
+            $('#fox2').attr('src', foxs[foxj]);//меняем изображение на изображение из массива
+            if((foxj<foxcont)&&(foxj>0)){//если число меньше количества элементов массива и больше нуля
+              setTimeout(FoxHover,110);//То запускаем функцию заново.
+            }else{//иначе
+              foxcontsign = foxcontsign*(-1);//меняем знак изменения счётчика массива и
+               setTimeout(FoxHover,110);//запускаем функцию заново
+             }
+            
+          }
+        }
+        function ContHover(){
+          if($('.cont-container').is(":hover")){//Если курсор на контейнере ящика
+            contj+=contcontsign;//изменяем счётчик массива
+            $('#cont2').attr('src', conts[contj]);//меняем изображение на изображение из массива
+            if((contj<contcont)&&(contj>0)){//если число меньше количества элементов массива и больше нуля
+              setTimeout(ContHover,110);//То запускаем функцию заново.
+            }else{//иначе
+              contcontsign = contcontsign*(-1);//меняем знак изменения счётчика массива и
+               setTimeout(ContHover,110);//запускаем функцию заново
+             }
+            
+          }
+        }
+        //Примечание. Скрипты анимаций более менее-нормально работают в хроме. в фф тормозят жутко -_- Грешу на размер изображений, но уверенности в этом никакой(сам код-то - шлак).
+        //Серьёзно. В мозиле вообще фигня какая-то. Upd. А в ie оно вообще не работает. Меняет изображение на следующее, после чего зависает. Пока идей никаких. =_= Бесполезен.
+        function OwlAnimate(){//Первоначальный запуск совы
+          $('#owl2').attr('src', owls[owlj]).fadeIn(0);//Делаем видимым изображение анимации, присваиваем ему ссылку на картинку из массива. Кажется что-то здесь избыточно.
+          $('#owl1').fadeOut(0);//прячем фоновое изображение
+          setTimeout(OwlHover,110);//Запускаем анимацию
+          }
+        function Leaf3Animate(){
+          setTimeout(Leaf3Hover,110);
+        }
+        function Leaf2Animate(){
+          setTimeout(Leaf2Hover,110);
+        }
+        function Leaf1Animate(){
+          setTimeout(Leaf1Hover,110);
+        }
+        function FoxAnimate(){//Первоначальный запуск лисицы
+          $('#fox2').attr('src', foxs[foxj]).fadeIn(0);//Делаем видимым изображение анимации, присваиваем ему ссылку на картинку из массива. Кажется что-то здесь избыточно.
+          $('#fox1').fadeOut(0);//прячем фоновое изображение
+          setTimeout(FoxHover,110);//Запускаем анимацию
+          }
+        function ContAnimate(){//Первоначальный запуск ящика
+          $('#cont2').attr('src', conts[contj]).fadeIn(0);//Делаем видимым изображение анимации, присваиваем ему ссылку на картинку из массива. 
+          $('#cont1').fadeOut(0);//прячем фоновое изображение
+          setTimeout(ContHover,110);//Запускаем анимацию
+          }
+        function preloadImages () {//функция предзагрузки изображений. Чистая магия.
+          if (typeof arguments[arguments.length - 1] == 'function') {
+             var callback = arguments[arguments.length - 1];
+          } else {
+             var callback = false;
+                 }
+          if (typeof arguments[0] == 'object') {
+             var images = arguments[0];
+             var n = images.length;
+          } else {
+             var images = arguments;
+             var n = images.length - 1;
+                 }
+            var not_loaded = n;
+            for (var i = 0; i < n; i++) {
+                 jQuery(new Image()).attr('src', images[i]).load(function() {
+                if (--not_loaded < 1 && typeof callback == 'function') {
+                callback();
+                 }
+             });
+           }
+        }
+        //вызов функций предзагрузки изображений для каждого массива изображений. Почему-то не пашет с листочками. Upd. Потому что ты передаёшь в функцию массив ссылок. ССЫЛОК, КАРЛ! Upd. Подобная предзагрузка изображений спасёт исключительно при нормальном канале интернета, поскольку функции анимаций всё равно запускаются без проверки на прогрузку. В идеале нужно поправить. Но... Лень.
+        $( document ).ready(preloadImages(leafsimg, function(){}));
+        $( document ).ready(preloadImages(foxs, function(){}));
+        $( document ).ready(preloadImages(conts, function(){}));
+        $( document ).ready(preloadImages(owls, function(){}));
+        $('.lighting').bind('mouseover',function(){
+              LightOpacity();
+        })
+        $('.fox-container').bind('mouseover',function(){
+              FoxAnimate();
+        })
+        $('.cont-container').bind('mouseover',function(){
+              ContAnimate();
+        })
+        $('.owl-container').bind('mouseover', function(){//Наведение на сову
+            OwlAnimate();
+        });
+        $('.owl-container').bind('mouseleave', function(){//Убрали курсор с совы. Да-да, функции одинаковые. Магия.
+            OwlAnimate();
+        });
+        $('#leaf3').bind('mouseover', function(){//Наведение на листок
+            Leaf3Animate();
+        });
+        $('#leaf3').bind('mouseleave', function(){//Убрали курсор с листка
+            Leaf3Animate();
+        });
+        $('#leaf2').bind('mouseover', function(){
+            Leaf2Animate();
+        });
+        $('#leaf2').bind('mouseleave', function(){
+            Leaf2Animate();
+        });
+        $('#leaf1').bind('mouseover', function(){
+            Leaf1Animate();
+        });
+        $('#leaf1').bind('mouseleave', function(){
+            Leaf1Animate();
+        });
+      })
+      </script>
+  </body>
+</html>
