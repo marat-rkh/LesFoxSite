@@ -22,11 +22,26 @@
 </script>
 <!--Adobe Edge Runtime End-->
 
+<!-- Photo Swipe -->
+<!-- Core CSS file -->
+<link rel="stylesheet" href="libs/pswp/photoswipe.css">
+<!-- Skin CSS file (styling of UI - buttons, caption, etc.) -->
+<link rel="stylesheet" href="libs/pswp/default-skin/default-skin.css">
+<!-- Core JS file -->
+<script src="libs/pswp/photoswipe.min.js"></script>
+<!-- UI JS file -->
+<script src="libs/pswp/photoswipe-ui-default.min.js"></script>
+
+<!-- galery style -->
+<link rel="stylesheet" type="text/css" href="res/css/my-gallery.css">
+
 </head>
 <body style="margin:0;padding:0;background-image: linear-gradient(rgb(15, 23, 25) 0%, rgb(26, 37, 41) 100%); background-attachment: fixed;">
 	<div id="Stage" class="EDGE-15091384">
 	</div>
-<div style="margin:0 50%;left:-450px;padding-top:140px;width:900px;position:relative;" id="gallery">		
+
+<div style="margin:0 50%;left:-450px;padding-top:140px;width:900px;position:relative;" id="gallery">
+<!--
 	<div id="cp_widget_5a0b01c2-db82-46c6-9681-c005d98d7ecb">...</div><script type="text/javascript">
 var cpo = []; cpo["_object"] ="cp_widget_5a0b01c2-db82-46c6-9681-c005d98d7ecb"; cpo["_fid"] = "AkPA_s8SXCYZ";
 var _cpmp = _cpmp || []; _cpmp.push(cpo);
@@ -34,6 +49,27 @@ var _cpmp = _cpmp || []; _cpmp.push(cpo);
 cp.async = true; cp.src = "//www.cincopa.com/media-platform/runtime/libasync.js";
 var c = document.getElementsByTagName("script")[0];
 c.parentNode.insertBefore(cp, c); })(); </script><noscript>Powered by Cincopa <a href='http://www.cincopa.com/video-hosting'>Video Hosting for Business</a> solution.</noscript>
+-->
+
+		<div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+			<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+	        <a id="ref1" href="res/img/img1.jpg" itemprop="contentUrl" data-size="600x400">
+	            <img id="img1" src="res/img/img1.jpg" itemprop="thumbnail" alt="Image description" />
+	        </a>
+	        <figcaption itemprop="caption description">Image caption</figcaption>
+	    </figure>
+
+	    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+	        <a href="res/img/img2.jpg" itemprop="contentUrl" data-size="440x690">
+	            <img src="res/img/img2.jpg" itemprop="thumbnail" alt="Image description" />
+	        </a>
+	        <figcaption itemprop="caption description">Image caption</figcaption>
+	    </figure>
+		</div>
+
+		<script src="add_photo_swipe_widget.js"></script>
+
 	</div>
+	<script src="fotoohota_patch.js"></script>
 </body>
 </html>
